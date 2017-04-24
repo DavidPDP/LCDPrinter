@@ -82,7 +82,6 @@ public class LCDPrinterTest {
 		int spaceSize = 5;
 		try {
 			String digits = lCDGenerator.generateLCDDigits(input, spaceSize);
-			System.out.println(digits);
 			assertEquals("         -       -              \n"+
 						 "  |       |       |     | |     \n"+
 						 "         -       -       -      \n"+

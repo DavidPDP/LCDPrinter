@@ -129,6 +129,10 @@ public class LCDGenerator implements ILCDGenerator{
 	 * @return String with the specified spaces number.
 	 */
 	private String generateSpaces(int sizeSpaces){
-		return String.format("%"+sizeSpaces+"s", "");
+		if(sizeSpaces == 0){
+			return "";
+		}else{
+			return String.format("%"+sizeSpaces+"s", "");
+		}
 	}
 }
