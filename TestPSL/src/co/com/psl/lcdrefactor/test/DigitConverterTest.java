@@ -37,7 +37,6 @@ public class DigitConverterTest {
 	public void convertDigitNine(){
 		List<String> digit = digitConverter.convertDigit(10, DigitsConstants.LCDrepresatation("9"));
 		String actual = appendList(digit);
-		System.out.println(actual);
 		assertEquals(" ---------- |          ||          ||          ||          ||"
 				+ "          ||          ||          ||          ||          ||"
 				+ "          | ----------            |           |           |           |"
