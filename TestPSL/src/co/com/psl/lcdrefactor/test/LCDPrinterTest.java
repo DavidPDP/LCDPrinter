@@ -23,14 +23,75 @@ public class LCDPrinterTest {
 	}
 	
 	@Test
-	public void printLCDDigitsParamsExceptionTest(){
-		String input = "asdfg";
-		int spaceSize = -1;
+	public void printLCDDigitsInvalidInputTest(){
+		String input = "";
+		int spaceSize = 2;
+		try {
+			lCDGenerator.generateLCDDigits(input, spaceSize);
+		} catch (ParamsException e) {
+			assertEquals("The param is null or empty",e.getMessage());
+		}
+	}
+	
+	@Test
+	public void printLCDDigitsInvalidFormatInputTest(){
+		String input = "112";
+		int spaceSize = 2;
 		try {
 			lCDGenerator.generateLCDDigits(input, spaceSize);
 		} catch (ParamsException e) {
 			assertEquals("The input doesn't have valid format",e.getMessage());
 		}
 	}
-
+	
+	@Test
+	public void printLCDDigitsInvalidRangeNumberTest(){
+		String input = "1,1a2";
+		int spaceSize = 2;
+		try {
+			lCDGenerator.generateLCDDigits(input, spaceSize);
+		} catch (ParamsException e) {
+			assertEquals("The param contains some char that doesn't number",e.getMessage());
+		}
+	}
+	
+	@Test
+	public void printLCDDigitsInvalidFormatTest1(){
+		String input = "1,1234";
+		int spaceSize = -1;
+		try {
+			lCDGenerator.generateLCDDigits(input, spaceSize);
+		} catch (ParamsException e) {
+			assertEquals("The param doesn't satisfy the interval",e.getMessage());
+		}
+	}
+	@Test
+	public void printLCDDigitsInvalidFormatTest2(){
+		String input = "1,1234";
+		int spaceSize = 6;
+		try {
+			lCDGenerator.generateLCDDigits(input, spaceSize);
+		} catch (ParamsException e) {
+			assertEquals("The param doesn't satisfy the interval",e.getMessage());
+		}
+	}
+	
+	@Test
+	public void printLCDDigitsInIntervalTest(){
+		String input = "1,1234";
+		int spaceSize = 5;
+		try {
+			String digits = lCDGenerator.generateLCDDigits(input, spaceSize);
+			System.out.println(digits);
+			assertEquals("         -       -              \n"+
+						 "  |       |       |     | |     \n"+
+						 "         -       -       -      \n"+
+						 "  |     |         |       |     \n"+
+						 "         -       -              \n", digits);
+		} catch(ParamsException e){
+			
+		}
+	}
+	
+	
 }

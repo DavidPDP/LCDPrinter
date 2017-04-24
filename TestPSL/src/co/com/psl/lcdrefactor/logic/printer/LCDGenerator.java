@@ -106,7 +106,7 @@ public class LCDGenerator implements ILCDGenerator{
 		catch(NumberFormatException e){
 			throw new ParamsException(ExceptionConstants.INVALID_CONVERTED_NUMBER);
 		}
-		if(!(convertion >= 1 && convertion <= 10)){
+		if(convertion < 1 || convertion > 10){
 			throw new ParamsException(ExceptionConstants.INVALID_RANGE_NUMBER);
 		}
 		return convertion;
@@ -118,10 +118,8 @@ public class LCDGenerator implements ILCDGenerator{
 	 * @throws ParamsException 
 	 */
 	private void validateDigits(String digits) throws ParamsException{
-		for (char ch : digits.toCharArray()) {
-			if (ch < '0' || ch > '9') {
-				throw new ParamsException(ExceptionConstants.INVALID_RANGE_NUMBER);
-			}
+		if(!(digits.matches("\\d+"))){
+			throw new ParamsException(ExceptionConstants.INVALID_CONVERTED_NUMBER);
 		}
 	}
 	
