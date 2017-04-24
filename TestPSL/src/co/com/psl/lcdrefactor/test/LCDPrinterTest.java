@@ -23,30 +23,13 @@ public class LCDPrinterTest {
 	}
 	
 	@Test
-	public void printLCDDigitsTest() {
-		String input = "1,123456789";
-		int spaceSize = 5;
-		try {
-			String result = lCDGenerator.generateLCDDigits(input, spaceSize);
-			System.out.println(result);
-			assertEquals("         -       -               -       -       -       -       -       \n"+
-					     "  |       |       |     | |     |       |         |     | |     | |      \n"+
-					     "         -       -       -       -       -               -       -       \n"+
-					     "  |     |         |       |       |     | |       |     | |       |      \n"+
-					     "         -       -               -       -               -       -       \n", result);
-		} catch (ParamsException e) {
-			
-		}
-	}
-	
-	@Test(expected=ParamsException.class)
 	public void printLCDDigitsParamsExceptionTest(){
 		String input = "asdfg";
 		int spaceSize = -1;
 		try {
 			lCDGenerator.generateLCDDigits(input, spaceSize);
 		} catch (ParamsException e) {
-			
+			assertEquals("The input doesn't have valid format",e.getMessage());
 		}
 	}
 
